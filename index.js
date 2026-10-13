@@ -5,7 +5,9 @@ const cors = require("cors");
 
 const sequelize = require("./utils/db-connection");
 const User = require("./models/user");
+require("./models/association");
 const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/users", userRoutes);
+app.use("/users", postRoutes);
 
 sequelize.sync()
     .then(() => {
